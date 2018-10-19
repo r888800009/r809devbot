@@ -1,0 +1,10 @@
+{
+    "Output"  : [
+        "LineAPI"
+    ],
+
+    "LineAPI" : {
+        "Secret"      : "",
+        "AccessToken" : ""
+    }
+}
