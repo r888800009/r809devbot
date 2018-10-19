@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import pprint
 from init import *
 
 # check config is exists
@@ -10,4 +11,4 @@ except FileNotFoundError:
     config = open("config.json").read()
 
 data = json.loads(config)
-print(data)
+print(json.dumps(data, indent =4))
