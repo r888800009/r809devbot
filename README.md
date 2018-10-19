@@ -6,6 +6,10 @@ Um... but I hope it could make like a human that chat naturally.
 
 ## Dependents
 ``` bash
+pip install flask   
+
+# if you want use line api
+pip install line-bot-sdk
 ```
 
 ## Installation and run
