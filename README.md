@@ -25,7 +25,7 @@ cd r809devbot
     "LineAPI" : {
         "Secret"      : "",
         "AccessToken" : ""
-    },
+    }
 }
 
 ```
