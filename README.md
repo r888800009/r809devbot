@@ -14,9 +14,15 @@ pip install line-bot-sdk
 
 ## Installation and run
 ``` bash
+# installation
 git clone https://github.com/r888800009/r809devbot.git
 cd r809devbot
+
+# run
 ./main.py
+
+# if you want to use ngrok
+ngrok http 127.0.0.1:5000
 ```
 
 ## Configure
