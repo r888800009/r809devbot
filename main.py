@@ -2,6 +2,8 @@
 from importlib import import_module
 import pprint
 import config as cf
+import multiprocessing as mp
+import time
 from init import *
 
 print("Hello there, it's r809's bot")
@@ -26,6 +28,20 @@ print(cf.config["Output"])
 connectType = {
         "LineAPI": lambda : import_module("modules.line")
         }
+
+process = {}
 for apis in cf.config["Output"]:
     print(apis)
-    connectType.get(apis)()
+    process[apis] = mp.Process(target = connectType.get(apis))
+    process[apis].start()
+
+import_module("modules.command")
+
+try:
+    while 1:
+        time.sleep(1)
+except KeyboardInterrupt:
+    for apis in cf.config["Output"]:
+        process[apis].join()
+
+print("done")
