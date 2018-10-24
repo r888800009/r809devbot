@@ -4,6 +4,7 @@
     ],
     "SQL" : "sqlite",
     "LineAPI" : {
+        "Path"        : "/linebot",
         "Secret"      : "",
         "AccessToken" : ""
     }

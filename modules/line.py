@@ -19,7 +19,7 @@ app = Flask(__name__)
 lineBotaAPI = LineBotApi(cf.config["LineAPI"]["AccessToken"])
 handler     = WebhookHandler(cf.config["LineAPI"]["Secret"])
 
-@app.route("/linebot", methods = ['POST'])
+@app.route(cf.config["LineAPI"]["Path"], methods = ['POST'])
 def linebot():
     sign = request.headers['X-Line-Signature']
 
