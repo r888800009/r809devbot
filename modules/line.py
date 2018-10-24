@@ -1,4 +1,5 @@
 from flask import Flask, request, abort
+import jieba
 import config as cf
 
 from linebot import (
@@ -35,8 +36,9 @@ def linebot():
 
 @handler.add(MessageEvent, message = TextMessage)
 def handle_message(event):
+    seg_list = jieba.cut(event.message.text)
     lineBotaAPI.reply_message(
         event.reply_token,
-        TextSendMessage(text = event.message.text))
+        TextSendMessage(text = ", ".join(seg_list)))
 
 app.run()
