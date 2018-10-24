@@ -52,6 +52,8 @@ must to set your `Webhook URL` like `example.com/linebot`.
 - `config.json`
 - `main.py`
 - `modules` directory, r809's bot is based on module design,
+- `modules/line.py` Line API
+- `modules/command.py` Command System
 so any command or plugin will put in here in principle.
 - `database.sqlite` is database of r809's bot 
 <!-- - `core` is a source code of core of r809's bot -->
@@ -65,6 +67,7 @@ There is  scheduled to support for the following connect configuration.
 - [ ] Telegram API
 - [ ] Messenger API
 - [ ] REST
+- [ ] ~~Minecraft Bukkit~~
 
 Use these like below
 ``` Json
