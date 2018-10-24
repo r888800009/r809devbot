@@ -7,6 +7,7 @@ Um... but I hope it could make like a human that chat naturally.
 ## Dependents
 ``` bash
 pip install flask   
+pip install jieba 
 
 # if you want to use line api
 pip install line-bot-sdk
