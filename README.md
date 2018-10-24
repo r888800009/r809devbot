@@ -8,7 +8,7 @@ Um... but I hope it could make like a human that chat naturally.
 ``` bash
 pip install flask   
 
-# if you want use line api
+# if you want to use line api
 pip install line-bot-sdk
 ```
 
@@ -44,26 +44,27 @@ ngrok http 127.0.0.1:5000
 ### LineAPI
 Configure `config.json`and only need to do chat with Line Chat account.
 
-###
+If your `Path` is `/linebot` and your domain is `example.com` then you
+must to set your `Webhook URL` like `example.com/linebot`.
 
 # For Developer
 ## Files
 - `config.json`
 - `main.py`
-<!-- - `core` is a source code of core of r809's bot -->
 - `modules` directory, r809's bot is based on module design,
 so any command or plugin will put in here in principle.
 - `database.sqlite` is database of r809's bot 
+<!-- - `core` is a source code of core of r809's bot -->
 
 ## Configure
 ### config.json
 There is  scheduled to support for the following connect configuration.
-- LineAPI
-- Matrix
-- IRC
-- Telegram API
-- Messenger API
-- REST
+- [x] LineAPI
+- [ ] Matrix
+- [ ] IRC
+- [ ] Telegram API
+- [ ] Messenger API
+- [ ] REST
 
 Use these like below
 ``` Json
