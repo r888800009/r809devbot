@@ -80,7 +80,19 @@ Use these like below
     "IRC"
 ]
 ```
+
 ### chat.py
-- `chat.registerMessageHandler(callback(message))` register a handler for handling received messages. 
-- `chat.receive(message)` an interface for the module to receive messages from APIs.
-- `chat.registerRespondHandler(callback(message))` an interface for the module responds messages to APIs.
+- `chat.handler(identifier, callback(message))` register a handler for handling received messages. 
+- `chat.receive(identifier, message)` an interface for the module to receive messages from APIs.
+- `chat.respond(identifier, callback(message))` an interface for the module responds messages to APIs.
+<!-- - `chat.trigger()`-->
+
+#### table 
+``` sql
+CREATE TABLE account (
+    user_name,
+    api_identifier,
+    enable_api
+);
+
+```
