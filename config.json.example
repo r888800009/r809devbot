@@ -1,11 +1,15 @@
 {
     "Output"  : [
-        "LineAPI"
+        "LineAPI",
+        "TelegramAPI"
     ],
     "SQL" : "sqlite",
     "LineAPI" : {
         "Path"        : "/linebot",
         "Secret"      : "",
         "AccessToken" : ""
+    },
+    "TelegramAPI" : {
+        "Token" : ""
     }
 }

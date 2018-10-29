@@ -11,6 +11,9 @@ pip install jieba
 
 # if you want to use line api
 pip install line-bot-sdk
+
+# if you want to use telegram api
+pip install python-telegram-bot
 ```
 
 ## Installation and run
@@ -30,13 +33,17 @@ ngrok http 127.0.0.1:5000
 ``` Json
 {
     "Output"  : [
-        "LineAPI"
+        "LineAPI",
+        "TelegramAPI"
     ],
     "SQL" : "sqlite",
     "LineAPI" : {
         "Path"        : "/linebot",
         "Secret"      : "",
         "AccessToken" : ""
+    },
+    "TelegramAPI" : {
+        "Token" : ""
     }
 }
 
@@ -67,7 +74,7 @@ There is  scheduled to support for the following connect configuration.
 - [x] LineAPI
 - [ ] Matrix
 - [ ] IRC
-- [ ] Telegram API
+- [x] Telegram API
 - [ ] Messenger API
 - [ ] REST
 - [ ] ~~Minecraft Bukkit~~

@@ -26,7 +26,8 @@ print("Loading apis")
 print(cf.config["Output"])
 
 connectType = {
-        "LineAPI": lambda : import_module("modules.line")
+        "LineAPI": lambda : import_module("modules.line"),
+        "TelegramAPI": lambda : import_module("modules.telegram")
         }
 
 process = {}
