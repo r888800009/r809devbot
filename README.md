@@ -93,6 +93,7 @@ Use these like below
 - `chat.handler(identifier, callback(message))` register a handler for handling received messages. 
 - `chat.receive(identifier, message)` an interface for the module to receive messages from APIs.
 - `chat.respond(identifier, callback(message))` an interface for the module responds messages to APIs.
+- `chat.log(identifier, message)` log message to database.
 <!-- - `chat.trigger()`-->
 
 #### table 
