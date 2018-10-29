@@ -25,7 +25,8 @@ cd r809devbot
 # run
 ./main.py
 
-# if you want to use ngrok
+# if you want to use line api
+# and you want to use ngrok
 ngrok http 127.0.0.1:5000
 ```
 
@@ -62,7 +63,7 @@ must to set your `Webhook URL` like `example.com/linebot`.
 - *`chat.py` (unavailable)* for handle message
 - `modules` directory, r809's bot is based on module design,
 - `modules/line.py` Line API
-- *`modules/telegram.py` (unavailable)* Telegram API 
+- `modules/telegram.py` Telegram API 
 - `modules/command.py` Command System
 so any command or plugin will put in here in principle.
 - `database.sqlite` is database of r809's bot 
