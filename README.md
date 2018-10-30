@@ -64,7 +64,7 @@ must to set your `Webhook URL` like `example.com/linebot`.
 - `modules` directory, r809's bot is based on module design,
 - `modules/line.py` Line API
 - `modules/telegram.py` Telegram API 
-- `modules/command.py` Command System
+- *`command.py` (unavailable)* Command System
 so any command or plugin will put in here in principle.
 - `database.sqlite` is database of r809's bot 
 <!-- - `core` is a source code of core of r809's bot -->
@@ -95,6 +95,14 @@ Use these like below
 - `chat.respond(identifier, callback(message))` an interface for the module responds messages to APIs.
 - `chat.log(identifier, message)` log message to database.
 <!-- - `chat.trigger()`-->
+
+### command.py commands
+- `disable message-print` do not show the message data when API receive
+- `disable config dump` do not show the configure json when start
+- `list config` show configure option
+- `list config Output` show `Output` option
+- `list config TelegramAPI.Token` show token of TelegramAPI
+
 
 #### table 
 ``` sql
