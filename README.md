@@ -104,12 +104,16 @@ Use these like below
 - `list config TelegramAPI.Token` show token of TelegramAPI
 
 
-#### table 
+#### schema
 ``` sql
 CREATE TABLE account (
     user_name,
     api_identifier,
     enable_api
+);
+
+CREATE TABLE chatlog_telegram (
+
 );
 
 ```
