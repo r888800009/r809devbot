@@ -31,6 +31,8 @@ def load_config():
         create_new_confige()
         config_file = open("config.json").read()
 
-    config = json.loads(config_file) # pylint: disable=W0621
+    global config # pylint: disable=W0603,C0103
+    config = json.loads(config_file)
+
     print("config dump")
     print(json.dumps(config, indent=4))
