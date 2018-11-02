@@ -1,7 +1,9 @@
-import json, sys, shutil
+"""init"""
+import sys
+import shutil
 
-def createNewConfige():
-
+def create_new_confige():
+    """creat config file"""
     print("""config.json not found,
 it seems like first time run r809's bot""")
 
@@ -11,9 +13,6 @@ it seems like first time run r809's bot""")
         if choice == 'y':
             shutil.copyfile("config.json.example", "config.json")
             return
-        elif choice == 'n':
-            print("Nope.")
-            sys.exit()
-            return
-
-
+        print("Nope.")
+        sys.exit()
+        return

@@ -1,1 +1,2 @@
-config = ""
+"""load config file"""
+CONFIG = {}

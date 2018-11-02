@@ -1,53 +1,61 @@
 #!/usr/bin/env python
+"""r809's bot"""
 from importlib import import_module
-import pprint
-import config as cf
 import multiprocessing as mp
 import time
-from init import *
+import json
+import config as cf
+import init
 
-def loadConfig():
+__pool__ = {}
+
+def load_config():
+    """load configure file"""
     print("Loading Configure")
     # check config is exists
-    configFile = ""
+    config_file = ""
     try:
-        configFile = open("config.json").read()
+        config_file = open("config.json").read()
     except FileNotFoundError:
-        createNewConfige()
-        configFile = open("config.json").read()
+        init.create_new_confige()
+        config_file = open("config.json").read()
 
-    cf.config = json.loads(configFile)
+    cf.CONFIG = json.loads(config_file)
     print("config dump")
-    print(json.dumps(cf.config, indent = 4))
+    print(json.dumps(cf.CONFIG, indent=4))
 
-def loadAPI():
+def load_api():
+    """load chat api"""
     print("Loading apis")
-    print(cf.config["Output"])
+    print(cf.CONFIG["Output"])
 
-    connectType = {
-            "LineAPI": lambda : import_module("modules.line"),
-            "TelegramAPI": lambda : import_module("modules.telegram")
-            }
+    connect_type = {
+        "LineAPI": lambda: import_module("modules.line_api"),
+        "TelegramAPI": lambda: import_module("modules.telegram_api")
+        }
 
-    process = {}
-    for apis in cf.config["Output"]:
+    for apis in cf.CONFIG["Output"]:
         print(apis)
-        process[apis] = mp.Process(target = connectType.get(apis))
-        process[apis].start()
+        __pool__[apis] = mp.Process(target=connect_type.get(apis))
+        __pool__[apis].start()
 
     import_module("modules.command")
 
+def stop_process():
+    """wait to stop Process"""
     try:
         while 1:
             time.sleep(1)
     except KeyboardInterrupt:
-        for apis in cf.config["Output"]:
-            process[apis].join()
+        for apis in cf.CONFIG["Output"]:
+            __pool__[apis].join()
 
 def main():
+    """start programe"""
     print("Hello there, it's r809's bot")
-    loadConfig()
-    loadAPI()
+    load_config()
+    load_api()
+    stop_process()
     print("done")
 
 
