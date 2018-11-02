@@ -5,7 +5,7 @@ from telegram.ext import MessageHandler, Filters
 import config as cf
 print("Start telegram API")
 
-updater = Updater(cf.CONFIG["TelegramAPI"]["Token"])
+updater = Updater(cf.config["TelegramAPI"]["Token"])
 dispatcher = updater.dispatcher
 
 def echo(bot, update):
