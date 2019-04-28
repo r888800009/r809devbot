@@ -3,6 +3,7 @@
 from importlib import import_module
 
 import config as cf
+import modules.command as cmd
 
 __stop_callbacks__ = []
 
@@ -20,7 +21,7 @@ def load_api():
         print(apis)
         connect_type.get(apis)()
 
-    import_module("modules.command")
+    cmd.start_command_system()
 
 def stop_handler(callback):
     "stop handler"

@@ -3,6 +3,8 @@
 import threading
 import main
 
+command_list = {'stop':  main.stop}
+
 class Command(threading.Thread):
     "Handle command"
     def __init__(self):
@@ -12,8 +14,6 @@ class Command(threading.Thread):
     def run(self):
         "run"
         print("Start Command System")
-
-        command_list = {"1": lambda: print("test")}
 
         # exit command
         command_list.update({'quit':  main.stop})
@@ -35,11 +35,16 @@ class Command(threading.Thread):
         print("stop command system")
         self.running = False
 
+def add_command(keyword, callback):
+    "Add command handler"
+    command_list.update({keyword: callback})
 
-__command__ = Command()
-__command__.start()
+def start_command_system():
+    "run command system"
+    __command__ = Command()
+    __command__.start()
 
-@main.stop_handler
-def stop():
-    "stop"
-    __command__.stop()
+    @main.stop_handler
+    def stop():
+        "stop"
+        __command__.stop()
