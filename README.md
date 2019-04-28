@@ -102,6 +102,7 @@ Use these like below
   - `list config` show configure option
   - `list config Output` show `Output` option
   - `list config TelegramAPI.Token` show token of TelegramAPI
+  - `exit` or `quit` exit r809bot
 
 #### schema
 ``` sql
