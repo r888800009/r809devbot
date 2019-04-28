@@ -3,18 +3,31 @@ import jieba
 from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 import config as cf
-print("Start telegram API")
+import main
 
-updater = Updater(cf.config["TelegramAPI"]["Token"])
-dispatcher = updater.dispatcher
+def run():
+    "run"
+    print("Start telegram API")
 
-def echo(bot, update):
-    print(update.message)
-    seg_list = jieba.cut(update.message.text)
-    bot.send_message(chat_id=update.message.chat_id, text=", ".join(seg_list))
+    updater = Updater(cf.config["TelegramAPI"]["Token"])
+    dispatcher = updater.dispatcher
+
+    def echo(bot, update):
+        print(update.message)
+        seg_list = jieba.cut(update.message.text)
+        bot.send_message(chat_id=update.message.chat_id, text=", ".join(seg_list))
 
 
-echo_handler = MessageHandler(Filters.text, echo)
-dispatcher.add_handler(echo_handler)
+    echo_handler = MessageHandler(Filters.text, echo)
+    dispatcher.add_handler(echo_handler)
 
-updater.start_polling()
+    updater.start_polling()
+
+    @main.stop_handler
+    def stop():
+        "stop"
+        updater.stop()
+
+run()
+
+

@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 """r809's bot"""
 from importlib import import_module
-import multiprocessing as mp
-import time
 
 import config as cf
 
-__pool__ = {}
+__stop_callbacks__ = []
 
 def load_api():
     """load chat api"""
@@ -20,27 +18,27 @@ def load_api():
 
     for apis in cf.config["Output"]:
         print(apis)
-        __pool__[apis] = mp.Process(target=connect_type.get(apis))
-        __pool__[apis].start()
+        connect_type.get(apis)()
 
     import_module("modules.command")
 
-def stop_process():
-    """wait to stop Process"""
-    try:
-        while 1:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        for apis in cf.config["Output"]:
-            __pool__[apis].join()
+def stop_handler(callback):
+    "stop handler"
+    __stop_callbacks__.append(callback)
+
+def stop():
+    "stop all modules"
+    for callback in __stop_callbacks__:
+        callback()
+
+    print("Exit r809bot")
 
 def main():
     """start programe"""
     print("Hello there, it's r809's bot")
     cf.load_config()
     load_api()
-    stop_process()
     print("done")
 
-
-main()
+if __name__ == '__main__':
+    main()
