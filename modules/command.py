@@ -3,7 +3,7 @@
 import threading
 import main
 
-command_list = {'stop':  main.stop}
+command_list = {'stop': lambda x: main.stop()}
 
 class Command(threading.Thread):
     "Handle command"
@@ -16,8 +16,8 @@ class Command(threading.Thread):
         print("Start Command System")
 
         # exit command
-        command_list.update({'quit':  main.stop})
-        command_list.update({'exit':  main.stop})
+        command_list.update({'quit': lambda x: main.stop()})
+        command_list.update({'exit': lambda x: main.stop()})
 
         # wait for handle commands
         while self.running:
@@ -28,7 +28,7 @@ class Command(threading.Thread):
             if command:
                 command_list.get(
                     command[0],
-                    lambda: print("Not found command \"%s\"" % command[0]))()
+                    lambda: print("Not found command \"%s\"" % command[0]))(command)
 
     def stop(self):
         "stop"
