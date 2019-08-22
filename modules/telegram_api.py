@@ -16,9 +16,17 @@ def echo(bot, update):
     seg_list = jieba.cut(update.message.text)
     # bot.send_message(chat_id=update.message.chat_id, text=", ".join(seg_list))
 
+def telegram_command(bot, update):
+    print(update)
+    def reply(msg):
+        bot.send_message(chat_id=update.message.chat_id, text=msg)
+
+    cmd.user_command_handler(update.message.text, reply)
 
 echo_handler = MessageHandler(Filters.text, echo)
+command_handler = MessageHandler(Filters.command, telegram_command)
 dispatcher.add_handler(echo_handler)
+dispatcher.add_handler(command_handler)
 
 updater.start_polling()
 
@@ -37,7 +45,6 @@ def command(args):
             updater.bot.send_message(chat_id=chat_id1, text=" ".join(args[2:]))
         elif args[1] == "set_say_chat_id":
             chat_id1 = args[2]
-
 
 cmd.add_command("tg", command)
 cmd.add_command("telegram", command)
