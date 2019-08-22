@@ -4,12 +4,18 @@ import threading
 import main
 
 command_list = {'stop': lambda x: main.stop()}
+user_command_list = {}
 
 class Command(threading.Thread):
     "Handle command"
     def __init__(self):
         threading.Thread.__init__(self)
         self.running = True
+
+        def help1(args):
+            return "help!"
+
+        add_user_command("/help", help1)
 
     def run(self):
         "run"
@@ -40,6 +46,22 @@ class Command(threading.Thread):
 def add_command(keyword, callback):
     "Add command handler"
     command_list.update({keyword: callback})
+
+def add_user_command(keyword, callback):
+    "Add command handler for user input"
+    user_command_list.update({keyword: callback})
+
+def user_command_handler(command, reply_handler):
+    if not command:
+        return
+
+    reply = user_command_list.get(
+        command,
+        lambda cmd: ("Not found command \"%s\"" % cmd))(command)
+
+    reply_handler(reply)
+    print(command)
+    print(reply)
 
 def start_command_system():
     "run command system"
