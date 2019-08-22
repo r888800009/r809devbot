@@ -73,7 +73,7 @@ def user_command_handler(command, reply_handler):
     print(reply)
 
 def user_help(command):
-    result = "*Command list*\n"
+    result = "**Command list**\n"
 
     for k in user_command_list:
         result += k + '\n'
