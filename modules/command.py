@@ -25,10 +25,12 @@ class Command(threading.Thread):
                 return
             str1 = input("> ")
             command = str1.split()
-            if command:
-                command_list.get(
-                    command[0],
-                    lambda cmd: print("Not found command \"%s\"" % cmd))(command)
+            if not command:
+                continue
+
+            command_list.get(
+                command[0],
+                lambda cmd: print("Not found command \"%s\"" % cmd))(command)
 
     def stop(self):
         "stop"
