@@ -20,6 +20,8 @@ class Command(threading.Thread):
             call = lambda x, y=k[1]: y
             add_user_command("/" + k[0], call)
 
+        add_user_command("/help", user_help)
+
     def run(self):
         "run"
         print("Start Command System")
@@ -27,6 +29,7 @@ class Command(threading.Thread):
         # exit command
         command_list.update({'quit': lambda x: main.stop()})
         command_list.update({'exit': lambda x: main.stop()})
+        command_list.update({'help': lambda x: help()})
 
         # wait for handle commands
         while self.running:
@@ -39,7 +42,7 @@ class Command(threading.Thread):
 
             command_list.get(
                 command[0],
-                lambda cmd: print("Not found command \"%s\"" % cmd))(command)
+                lambda cmd: print("Not found command \"%s\", \"help\"" % cmd))(command)
 
     def stop(self):
         "stop"
@@ -63,11 +66,23 @@ def user_command_handler(command, reply_handler):
 
     reply = user_command_list.get(
         command,
-        lambda cmd: ("Not found command \"%s\"" % cmd))(command)
+        lambda cmd: ("Not found command \"%s\", /help" % cmd))(command)
 
     reply_handler(reply)
     print(command)
     print(reply)
+
+def user_help(command):
+    result = "**Command list**\n"
+
+    for k in user_command_list:
+        result += k + '\n'
+
+    return result
+
+def help():
+    for k in command_list:
+        print(k)
 
 def start_command_system():
     "run command system"
