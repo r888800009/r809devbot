@@ -28,7 +28,7 @@ class Command(threading.Thread):
             if command:
                 command_list.get(
                     command[0],
-                    lambda: print("Not found command \"%s\"" % command[0]))(command)
+                    lambda cmd: print("Not found command \"%s\"" % cmd))(command)
 
     def stop(self):
         "stop"
