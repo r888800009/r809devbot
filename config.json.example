@@ -17,7 +17,7 @@
   },
 
   "Command" : {
-    "custom_command" : {
+    "custom_commands" : {
       "help" : "help!",
       "rules" : "This is example rule!",
       "code" : "https://pastebin.com/"
