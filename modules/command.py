@@ -2,6 +2,8 @@
 
 import threading
 import main
+import config as cf
+import re
 
 command_list = {'stop': lambda x: main.stop()}
 user_command_list = {}
@@ -12,10 +14,11 @@ class Command(threading.Thread):
         threading.Thread.__init__(self)
         self.running = True
 
-        def help1(args):
-            return "help!"
-
-        add_user_command("/help", help1)
+        # load commands
+        custom_commands = cf.config["Command"]["custom_commands"]
+        for k in custom_commands.items():
+            call = lambda x, y=k[1]: y
+            add_user_command("/" + k[0], call)
 
     def run(self):
         "run"
@@ -49,10 +52,13 @@ def add_command(keyword, callback):
 
 def add_user_command(keyword, callback):
     "Add command handler for user input"
+    print("Add user command \"" + keyword + "\"")
     user_command_list.update({keyword: callback})
 
 def user_command_handler(command, reply_handler):
-    if not command:
+    "chatbot api call this to handler user commands"
+    check = r'^/[a-zA-Z\s_]*$'
+    if not command or not re.match(check, command):
         return
 
     reply = user_command_list.get(

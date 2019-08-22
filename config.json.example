@@ -1,15 +1,25 @@
 {
-    "Output"  : [
-        "LineAPI",
-        "TelegramAPI"
-    ],
-    "SQL" : "sqlite",
-    "LineAPI" : {
-        "Path"        : "/linebot",
-        "Secret"      : "",
-        "AccessToken" : ""
-    },
-    "TelegramAPI" : {
-        "Token" : ""
+  "Output"  : [
+    "LineAPI",
+    "TelegramAPI"
+  ],
+
+  "SQL" : "sqlite",
+
+  "LineAPI" : {
+    "Path"        : "/linebot",
+    "Secret"      : "",
+    "AccessToken" : ""
+  },
+
+  "TelegramAPI" : {
+    "Token" : ""
+  },
+
+  "Command" : {
+    "custom_command" : {
+      "help" : "help!",
+      "rules" : "This is example rule!"
     }
+  }
 }
