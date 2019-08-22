@@ -2,6 +2,7 @@
 import jieba
 from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
+import telegram
 import config as cf
 import main
 import modules.command as cmd
@@ -19,7 +20,7 @@ def echo(bot, update):
 def telegram_command(bot, update):
     print(update)
     def reply(msg):
-        bot.send_message(chat_id=update.message.chat_id, text=msg)
+        bot.send_message(chat_id=update.message.chat_id, text=msg, parse_mode=telegram.ParseMode.MARKDOWN)
 
     cmd.user_command_handler(update.message.text, reply)
 
