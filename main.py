@@ -17,6 +17,8 @@ def load_api():
         "TelegramAPI": lambda: import_module("modules.telegram_api")
         }
 
+    cmd.load_commands()
+
     for apis in cf.config["Output"]:
         print(apis)
         connect_type.get(apis)()

@@ -14,22 +14,9 @@ class Command(threading.Thread):
         threading.Thread.__init__(self)
         self.running = True
 
-        # load commands
-        custom_commands = cf.config["Command"]["custom_commands"]
-        for k in custom_commands.items():
-            call = lambda x, y=k[1]: y
-            add_user_command("/" + k[0], call)
-
-        add_user_command("/help", user_help)
-
     def run(self):
         "run"
         print("Start Command System")
-
-        # exit command
-        command_list.update({'quit': lambda x: main.stop()})
-        command_list.update({'exit': lambda x: main.stop()})
-        command_list.update({'help': lambda x: help()})
 
         # wait for handle commands
         while self.running:
@@ -48,6 +35,21 @@ class Command(threading.Thread):
         "stop"
         print("stop command system")
         self.running = False
+
+def load_commands():
+    "load commands"
+    # exit command
+    command_list.update({'quit': lambda x: main.stop()})
+    command_list.update({'exit': lambda x: main.stop()})
+    command_list.update({'help': lambda x: help()})
+
+    # load custom commands
+    custom_commands = cf.config["Command"]["custom_commands"]
+    for k in custom_commands.items():
+        call = lambda x, y=k[1]: y
+        add_user_command("/" + k[0], call)
+
+    add_user_command("/help", user_help)
 
 def add_command(keyword, callback):
     "Add command handler"
