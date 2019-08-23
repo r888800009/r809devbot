@@ -1,4 +1,5 @@
 """modules for telegram API"""
+import re
 import jieba
 from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
@@ -17,11 +18,16 @@ def echo(bot, update):
     # bot.send_message(chat_id=update.message.chat_id, text=", ".join(seg_list))
 
 def telegram_command(bot, update):
+    message = update.message.text
     print(update)
+    regex = re.compile('^/[a-zA-Z_]+@' + bot.username + r'($|\s)')
+    if '@' in message and not re.match(regex, message):
+        return
+
     def reply(msg):
         bot.send_message(chat_id=update.message.chat_id, text=msg)
 
-    cmd.user_command_handler(update.message.text, reply)
+    cmd.user_command_handler(message, reply)
 
 echo_handler = MessageHandler(Filters.text, echo)
 command_handler = MessageHandler(Filters.command, telegram_command)

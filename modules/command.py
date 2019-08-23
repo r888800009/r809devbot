@@ -62,13 +62,17 @@ def add_user_command(keyword, callback):
 
 def user_command_handler(command, reply_handler):
     "chatbot api call this to handler user commands"
-    check = r'^/[a-zA-Z\s_]*$'
-    if not command or not re.match(check, command):
+    check = r'^/[a-zA-Z_]*'
+    match = re.match(check, command)
+    if not command or not match:
         return
 
+    command_name = match.group(0)
+
     reply = user_command_list.get(
-        command,
-        lambda cmd: ("Not found command \"%s\", /help" % cmd))(command)
+        command_name,
+        lambda cmd, command_name=command_name:
+        ("Not found command \"%s\", /help" % command_name))(command)
 
     reply_handler(reply)
     print(command)
